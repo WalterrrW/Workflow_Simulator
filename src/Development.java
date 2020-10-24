@@ -1,6 +1,12 @@
 
 public class Development implements State{
 
+	Manager executorManager;
+
+	public Development(Manager manager) {
+		this.executorManager = manager;
+	}
+
 	@Override
 	synchronized public String call() {		
 		try {

@@ -1,6 +1,12 @@
 
 public class Todo implements State{
 
+	Manager executorManager;
+
+	public Todo(Manager manager) {
+		this.executorManager = manager;
+	}
+
 	@Override
 	synchronized public String call() {		
 		try {

@@ -1,6 +1,11 @@
 
 public class Feedback implements State{
 
+	Manager executorManager;
+
+	public Feedback(Manager manager) {
+		this.executorManager = manager;
+	}
 	@Override
 synchronized public String call() {
 		try {
