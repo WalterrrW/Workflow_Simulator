@@ -1,11 +1,5 @@
 
 public class Testing implements State{
-	
-	Manager executorManager;
-
-	public Testing(Manager manager) {
-		this.executorManager = manager;
-	}
 
 	@Override
 	synchronized public String call() {

@@ -2,11 +2,6 @@
 
 public class AddTask implements State{
 
-	Manager executorManager;
-
-	public AddTask(Manager manager) {
-		this.executorManager = manager;
-	}
 
 	@Override
 	synchronized public String call() {		
