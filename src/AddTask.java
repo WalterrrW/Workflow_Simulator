@@ -17,20 +17,23 @@ public class AddTask implements State{
 			System.out.println("AddTask call()");
 			nextState = taskPool.getNextStateForAddTask();
 			prevState = taskPool.getPrevStateForAddTask();
-			System.out.println(nextState.getClass().getSimpleName());
-			System.out.println(prevState);
-			System.out.println();
+//			System.out.println("nextState:" + nextState.getClass().getSimpleName());
+//			System.out.println("prevState: " + prevState);
+//			System.out.println();
 
 			while(true){
 				Task task = taskPool.getFromWaitingAddedTasksQueue();
 				if(task != null){
-					action();
+					action(task);
 					taskPool.addToWaitingTodosQueue(task);
 //					continue;
 				} else{
-					Thread.sleep(15000);
-					System.out.println("No task to be added!");
-					break;
+					Thread.sleep(3000);
+					if(!taskPool.finishJob){
+						break;
+					}
+//					System.out.println("No task to be added!");
+//					break;
 				}
 			}
         } catch(Exception e) {
@@ -41,9 +44,9 @@ public class AddTask implements State{
 		return null;
 	}
 
-	public boolean action() throws InterruptedException {
+	public boolean action(Task task) throws InterruptedException {
 		Thread.sleep(2000);
-		System.out.println("AddTask Action running...\n");
+		System.out.println("AddTask Action running..." + task.getTaskId() + '\n');
 		return true;
 	}
 }

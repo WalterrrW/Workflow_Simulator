@@ -17,20 +17,23 @@ public class Testing implements State{
 			System.out.println("Testing call()");
 			nextState = taskPool.getNextStateForTesting();
 			prevState = taskPool.getPrevStateForTesting();
-			System.out.println(nextState);
-			System.out.println(prevState.getClass().getSimpleName());
-			System.out.println();
+//			System.out.println("nextState: " + nextState);
+//			System.out.println("prevState: " + prevState.getClass().getSimpleName());
+//			System.out.println();
 
 			while(true){
-				Task task = taskPool.getFromWaitingTodosQueue();
+				Task task = taskPool.getFromWaitingTestingQueue();
 				if(task != null){
-					action();
+					action(task);
 //					taskPool.addToWaitingDevelopmentQueue(task);
 //					continue;
 				} else{
-					Thread.sleep(10000);
-					System.out.println("No task to be added to Testing!");
-					break;
+					Thread.sleep(3000);
+					if(!taskPool.finishJob){
+						break;
+					}
+//					System.out.println("No task to be added to Testing!");
+//					break;
 				}
 			}
 		} catch(Exception e) {
@@ -41,9 +44,9 @@ public class Testing implements State{
 		return null;
 	}
 
-	public boolean action() throws InterruptedException {
+	public boolean action(Task task) throws InterruptedException {
 		Thread.sleep(2000);
-		System.out.println("Testing Action running...\n");
+		System.out.println("Testing Action running..." + task.getTaskId() + '\n');
 		return true;
 	}
 }

@@ -17,20 +17,23 @@ public class Todo implements State {
             System.out.println("Todo call()");
             nextState = taskPool.getNextStateForTodo();
             prevState = taskPool.getPrevStateForTodo();
-            System.out.println(nextState.getClass().getSimpleName());
-            System.out.println(prevState);
-            System.out.println();
+//            System.out.println("nextState: " + nextState.getClass().getSimpleName());
+//            System.out.println("prevState: " + prevState);
+//            System.out.println();
 
             while(true){
                 Task task = taskPool.getFromWaitingTodosQueue();
                 if(task != null){
-                    action();
+                    action(task);
                     taskPool.addToWaitingDevelopmentQueue(task);
 //					continue;
                 } else{
-                    Thread.sleep(10000);
-                    System.out.println("No task to be added to Todo!");
-                    break;
+                    Thread.sleep(3000);
+                    if(!taskPool.finishJob){
+                        break;
+                    }
+//                    System.out.println("No task to be added to Todo!");
+//                    break;
                 }
             }
         } catch(Exception e) {
@@ -41,9 +44,9 @@ public class Todo implements State {
         return null;
     }
 
-    public boolean action() throws InterruptedException {
+    public boolean action(Task task) throws InterruptedException {
         Thread.sleep(2000);
-        System.out.println("Task Action running...\n");
+        System.out.println("Todo Action running..." + task.getTaskId() + '\n');
         return true;
     }
 

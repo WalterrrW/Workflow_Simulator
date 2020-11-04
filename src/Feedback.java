@@ -17,23 +17,29 @@ public class Feedback implements State{
 			System.out.println("Feedback call()");
 			nextState = taskPool.getNextStateForFeedback();
 			prevState = taskPool.getPrevStateForFeedback();
-			System.out.println(nextState.getClass().getSimpleName());
-			System.out.println(prevState.getClass().getSimpleName());
-			System.out.println();
+//			System.out.println("nextState: " + nextState.getClass().getSimpleName());
+//			System.out.println("prevState: " + prevState.getClass().getSimpleName());
+//			System.out.println();
+
+//			Thread.sleep(10000);
 
 			while(true){
 				Task task = taskPool.getFromWaitingFeedbackQueue();
 				if(task != null){
-					action();
+					action(task);
 					taskPool.addToWaitingTestingQueue(task);
 //					continue;
 				} else{
-					Thread.sleep(10000);
-					System.out.println("No task to be added to Feedback!");
-					break;
+					Thread.sleep(3000);
+					if(!taskPool.finishJob){
+						break;
+					}
+//					System.out.println("No task to be added to Feedback!");
+//					break;
 				}
 			}
 		} catch(Exception e) {
+			System.out.println(e);
 			System.out.println("Error");
 			// TODO Auto-generated method stub
 			return null;
@@ -41,9 +47,9 @@ public class Feedback implements State{
 		return null;
 	}
 
-	public boolean action() throws InterruptedException {
+	public boolean action(Task task) throws InterruptedException {
 		Thread.sleep(2000);
-		System.out.println("Feedback Action running...\n");
+		System.out.println("Feedback Action running..." + task.getTaskId() + '\n');
 		return true;
 	}
 }

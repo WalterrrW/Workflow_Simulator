@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -30,26 +31,49 @@ public class Manager {
         taskPool.setPrevStateForFeedback(development);
         taskPool.setPrevStateForTesting(development);
 
-        taskPool.addToWaitingAddedTasksQueue(new Task(7));
+
 
         ExecutorService executorService = Executors.newFixedThreadPool(5);
 
 
         try {
             executorService.submit(addTask);
-            TimeUnit.SECONDS.sleep(3);
+//            TimeUnit.SECONDS.sleep(3);
             executorService.submit(todo);
-            TimeUnit.SECONDS.sleep(3);
+//            TimeUnit.SECONDS.sleep(3);
             executorService.submit(development);
-            TimeUnit.SECONDS.sleep(3);
+//            TimeUnit.SECONDS.sleep(3);
             executorService.submit(feedback);
-            TimeUnit.SECONDS.sleep(3);
+//            TimeUnit.SECONDS.sleep(3);
             executorService.submit(testing);
+
+
+
+        taskPool.addToWaitingAddedTasksQueue(new Task(7));
+            TimeUnit.SECONDS.sleep(2);
+        taskPool.addToWaitingAddedTasksQueue(new Task(8));
+            TimeUnit.SECONDS.sleep(2);
+        taskPool.addToWaitingAddedTasksQueue(new Task(9));
+            TimeUnit.SECONDS.sleep(2);
+        taskPool.addToWaitingAddedTasksQueue(new Task(10));
+
+            TimeUnit.SECONDS.sleep(30);
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
 
+        taskPool.finishJob = false;
+
+        executorService.shutdown();
+
+//        Scanner in = new Scanner(System.in);
+//
+//        String s = in.nextLine();
+//        System.out.println("You entered an Id "+s);
+//
+//        int a = in.nextInt();
     }
 
 
