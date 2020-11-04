@@ -26,14 +26,11 @@ public class Development implements State{
 				if(task != null){
 					action(task);
 					taskPool.addToWaitingFeedbackQueue(task);
-//					continue;
 				} else{
 					Thread.sleep(3000);
 					if(!taskPool.finishJob){
 						break;
 					}
-//					System.out.println("No task to be added to Development!");
-//					break;
 				}
 			}
 		} catch(Exception e) {

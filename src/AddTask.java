@@ -26,14 +26,11 @@ public class AddTask implements State{
 				if(task != null){
 					action(task);
 					taskPool.addToWaitingTodosQueue(task);
-//					continue;
 				} else{
 					Thread.sleep(3000);
 					if(!taskPool.finishJob){
 						break;
 					}
-//					System.out.println("No task to be added!");
-//					break;
 				}
 			}
         } catch(Exception e) {

@@ -7,18 +7,13 @@ public class TaskPool {
 
     public boolean finishJob = true;
 
-//    private Queue<Task> waitingAddedTasksQueue = new PriorityBlockingQueue<>();
-//    private Queue<Task> waitingTodosQueue = new PriorityBlockingQueue<>();
-//    private Queue<Task> waitingDevelopmentQueue = new PriorityBlockingQueue<>();
-//    private Queue<Task> waitingFeedbackQueue = new PriorityBlockingQueue<>();
-//    private Queue<Task> waitingTestingQueue = new SynchronousQueue<>();
+   //trial using PriorityBlockingQueue failed
 
     private Queue<Task> waitingAddedTasksQueue = new LinkedList<>();
     private Queue<Task> waitingTodosQueue = new LinkedList<>();
     private Queue<Task> waitingDevelopmentQueue = new LinkedList<>();
     private Queue<Task> waitingFeedbackQueue = new LinkedList<>();
     private Queue<Task> waitingTestingQueue = new LinkedList<>();
-    /* find a kind of list which is thread safe and can add and remove tasks accessed on multiple threads*/
 
     private State nextStateForAddTask;
     private State nextStateForTodo;
@@ -119,66 +114,6 @@ public class TaskPool {
     public void setPrevStateForTesting(State prevStateForTesting) {
         this.prevStateForTesting = prevStateForTesting;
     }
-
-//    public void addToWaitingAddedTasksQueue(Task addTask){
-//        waitingAddedTasksQueue.add(addTask);
-//    }
-//
-//    public Task getFromWaitingAddedTasksQueue(){
-//        if(waitingAddedTasksQueue.size() != 0) {
-//            return waitingAddedTasksQueue.remove();
-//        } else {
-//            return null;
-//        }
-//    }
-//
-//    public void addToWaitingTodosQueue(Task todo){
-//        waitingTodosQueue.add(todo);
-//    }
-//
-//    public Task getFromWaitingTodosQueue(){
-//        if(waitingTodosQueue.size() != 0) {
-//            return waitingTodosQueue.remove();
-//        } else {
-//            return null;
-//        }
-//    }
-//
-//    public void addToWaitingDevelopmentQueue(Task development){
-//        waitingDevelopmentQueue.add(development);
-//    }
-//
-//    public Task getFromWaitingDevelopmentQueue(){
-//        if(waitingDevelopmentQueue.size() != 0) {
-//            return waitingDevelopmentQueue.remove();
-//        } else {
-//            return null;
-//        }
-//    }
-//
-//    public void addToWaitingFeedbackQueue(Task feedback){
-//        waitingFeedbackQueue.add(feedback);
-//    }
-//
-//    public Task getFromWaitingFeedbackQueue(){
-//        if(waitingFeedbackQueue.size() != 0) {
-//            return waitingFeedbackQueue.remove();
-//        } else {
-//            return null;
-//        }
-//    }
-//
-//    public void addToWaitingTestingQueue(Task testing){
-//        waitingTestingQueue.add(testing);
-//    }
-//
-//    public Task getFromWaitingTestingQueue(){
-//        if(waitingTestingQueue.size() != 0) {
-//            return waitingTestingQueue.remove();
-//        } else {
-//            return null;
-//        }
-//    }
 
     public void addToWaitingAddedTasksQueue(Task addTask){
         waitingAddedTasksQueue.add(addTask);

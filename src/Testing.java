@@ -25,15 +25,11 @@ public class Testing implements State{
 				Task task = taskPool.getFromWaitingTestingQueue();
 				if(task != null){
 					action(task);
-//					taskPool.addToWaitingDevelopmentQueue(task);
-//					continue;
 				} else{
 					Thread.sleep(3000);
 					if(!taskPool.finishJob){
 						break;
 					}
-//					System.out.println("No task to be added to Testing!");
-//					break;
 				}
 			}
 		} catch(Exception e) {

@@ -20,22 +20,17 @@ public class Feedback implements State{
 //			System.out.println("nextState: " + nextState.getClass().getSimpleName());
 //			System.out.println("prevState: " + prevState.getClass().getSimpleName());
 //			System.out.println();
-
-//			Thread.sleep(10000);
-
+			
 			while(true){
 				Task task = taskPool.getFromWaitingFeedbackQueue();
 				if(task != null){
 					action(task);
 					taskPool.addToWaitingTestingQueue(task);
-//					continue;
 				} else{
 					Thread.sleep(3000);
 					if(!taskPool.finishJob){
 						break;
 					}
-//					System.out.println("No task to be added to Feedback!");
-//					break;
 				}
 			}
 		} catch(Exception e) {

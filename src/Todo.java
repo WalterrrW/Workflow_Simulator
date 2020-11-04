@@ -26,14 +26,11 @@ public class Todo implements State {
                 if(task != null){
                     action(task);
                     taskPool.addToWaitingDevelopmentQueue(task);
-//					continue;
                 } else{
                     Thread.sleep(3000);
                     if(!taskPool.finishJob){
                         break;
                     }
-//                    System.out.println("No task to be added to Todo!");
-//                    break;
                 }
             }
         } catch(Exception e) {
