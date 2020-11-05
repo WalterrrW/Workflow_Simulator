@@ -53,7 +53,7 @@ public class Manager {
             TimeUnit.SECONDS.sleep(2);
         taskPool.addToWaitingAddedTasksQueue(new Task(10));
 
-            TimeUnit.SECONDS.sleep(30);
+            TimeUnit.SECONDS.sleep(55);
 
         } catch (InterruptedException e) {
             e.printStackTrace();

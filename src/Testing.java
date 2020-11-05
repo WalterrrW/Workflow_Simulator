@@ -1,4 +1,5 @@
 import java.util.Queue;
+import java.util.Random;
 import java.util.concurrent.PriorityBlockingQueue;
 
 public class Testing implements State{
@@ -6,6 +7,7 @@ public class Testing implements State{
 	State nextState;
 	State prevState;
 	TaskPool taskPool;
+	Random rd = new Random();
 
 	public Testing(TaskPool taskPool){
 		this.taskPool = taskPool;
@@ -24,7 +26,11 @@ public class Testing implements State{
 			while(true){
 				Task task = taskPool.getFromWaitingTestingQueue();
 				if(task != null){
-					action(task);
+					if(action(task)){
+						System.out.println(task.getTaskId() + " in production");
+					} else {
+						taskPool.addToWaitingDevelopmentQueue(task);
+					}
 				} else{
 					Thread.sleep(3000);
 					if(!taskPool.finishJob){
@@ -42,7 +48,12 @@ public class Testing implements State{
 
 	public boolean action(Task task) throws InterruptedException {
 		Thread.sleep(2000);
-		System.out.println("Testing Action running..." + task.getTaskId() + '\n');
-		return true;
+//		System.out.println("Testing Action running..." + task.getTaskId() + '\n');
+		if(rd.nextBoolean()){
+			System.out.println("Testing Action completed..." + task.getTaskId() + '\n');
+			return true;
+		}
+		System.out.println("Testing Action failed..." + task.getTaskId() + '\n');
+		return false;
 	}
 }
