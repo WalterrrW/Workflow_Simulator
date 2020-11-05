@@ -47,11 +47,11 @@ public class Manager {
 
         taskPool.addToWaitingAddedTasksQueue(new Task(7));
             TimeUnit.SECONDS.sleep(2);
-        taskPool.addToWaitingAddedTasksQueue(new Task(8));
-            TimeUnit.SECONDS.sleep(2);
-        taskPool.addToWaitingAddedTasksQueue(new Task(9));
-            TimeUnit.SECONDS.sleep(2);
-        taskPool.addToWaitingAddedTasksQueue(new Task(10));
+//        taskPool.addToWaitingAddedTasksQueue(new Task(8));
+//            TimeUnit.SECONDS.sleep(2);
+//        taskPool.addToWaitingAddedTasksQueue(new Task(9));
+//            TimeUnit.SECONDS.sleep(2);
+//        taskPool.addToWaitingAddedTasksQueue(new Task(10));
 
             TimeUnit.SECONDS.sleep(55);
 

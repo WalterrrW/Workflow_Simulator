@@ -1,4 +1,5 @@
 import java.util.Queue;
+import java.util.Scanner;
 import java.util.concurrent.PriorityBlockingQueue;
 
 public class Development implements State{
@@ -6,6 +7,7 @@ public class Development implements State{
 	State nextState;
 	State prevState;
 	TaskPool taskPool;
+	Scanner sc = new Scanner(System.in);
 
 	public Development(TaskPool taskPool){
 		this.taskPool = taskPool;
@@ -46,4 +48,6 @@ public class Development implements State{
 		System.out.println("Development Action running..." + task.getTaskId() + '\n');
 		return true;
 	}
+
+
 }
