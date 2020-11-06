@@ -2,15 +2,12 @@ import java.util.Queue;
 import java.util.Random;
 import java.util.concurrent.PriorityBlockingQueue;
 
-public class Feedback implements State{
+public class Feedback implements State {
 
-	State nextState;
-	State prevState;
 	TaskPool taskPool;
-	//	Scanner sc = new Scanner(System.in);
 	Random rd = new Random();
 
-	public Feedback(TaskPool taskPool){
+	public Feedback(TaskPool taskPool) {
 		this.taskPool = taskPool;
 	}
 
@@ -18,72 +15,26 @@ public class Feedback implements State{
 	synchronized public String call() {
 		try {
 			System.out.println("Feedback call()");
-			nextState = taskPool.getNextStateForFeedback();
-			prevState = taskPool.getPrevStateForFeedback();
-//			System.out.println("nextState: " + nextState.getClass().getSimpleName());
-//			System.out.println("prevState: " + prevState.getClass().getSimpleName());
-//			System.out.println();
-			
-			while(true){
+
+			while (true) {
 				Task task = taskPool.getFromWaitingFeedbackQueue();
-				if(task != null){
-					if(action(task)){
+					action(task);
 						taskPool.addToWaitingTestingQueue(task);
-					} else {
-						taskPool.addToWaitingDevelopmentQueue(task);
-					}
-				} else{
-					Thread.sleep(1000);
-					if(!taskPool.finishJob){
-						break;
-					}
-				}
 			}
-		} catch(Exception e) {
+		} catch (Exception e) {
 			System.out.println(e);
 			System.out.println("Error");
 			// TODO Auto-generated method stub
-			return null;
 		}
 		return null;
 	}
 
 	public boolean action(Task task) throws InterruptedException {
-		Thread.sleep(2000);
-		if(rd.nextBoolean()){
-			System.out.println("Feedback Action completed..." + task.getTaskId() + '\n');
-			return true;
-		}
-		System.out.println("Feedback Action failed..." + task.getTaskId() + '\n');
-		return false;
+		Thread.sleep(1000);
+		System.out.println("Feedback Action completed..." + task.getTaskId() + '\n');
+		Thread.sleep(3000);
+		System.out.println("is mai paralel ca doua linii paralele");
+		return true;
 	}
-
-	// to make it quicker uncomment method below  and comment the method above
-//	public boolean action(Task task) throws InterruptedException {
-//		Thread.sleep(2000);
-//		System.out.println("AddTask Action running..." + task.getTaskId() + '\n');
-//		return true;
-//	}
-
-
-
-
-
-	// the solution where you type your response is not good because
-	// the console and printing won't have an order
-
-//	public boolean action(Task task) throws InterruptedException {
-//		Thread.sleep(2000);
-//		System.out.println("Have Task number " + task.getTaskId() + " passed your feedback?");
-//		System.out.println("Your answer (yes/no) :  ");
-//		String response = sc.nextLine();
-//		if(response.equals("yes")){
-//			return true;
-//		} else if(response.equals("no")){
-//			return false;
-//		} else {
-//			System.out.println("Bad input");
-//			return action(task);
-//		}
-//	}
 }
+

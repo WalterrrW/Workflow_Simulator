@@ -6,26 +6,14 @@ import java.util.concurrent.SynchronousQueue;
 public class TaskPool {
 
     public boolean finishJob = true;
-
-   //trial using PriorityBlockingQueue failed
+    public int toDoVar = 0;
+    public int devVar = 0;
 
     private Queue<Task> waitingAddedTasksQueue = new LinkedList<>();
     private Queue<Task> waitingTodosQueue = new LinkedList<>();
     private Queue<Task> waitingDevelopmentQueue = new LinkedList<>();
     private Queue<Task> waitingFeedbackQueue = new LinkedList<>();
     private Queue<Task> waitingTestingQueue = new LinkedList<>();
-
-    private State nextStateForAddTask;
-    private State nextStateForTodo;
-    private State nextStateForDevelopment;
-    private State nextStateForFeedback;
-    private State nextStateForTesting;
-
-    private State prevStateForAddTask;
-    private State prevStateForTodo;
-    private State prevStateForDevelopment;
-    private State prevStateForFeedback;
-    private State prevStateForTesting;
 
     /*
      * Below you can see
@@ -34,87 +22,6 @@ public class TaskPool {
      * and also some methods for
      * adding an removing from the Queues
      * */
-
-    public State getNextStateForAddTask() {
-        return nextStateForAddTask;
-    }
-
-    public void setNextStateForAddTask(State nextStateForAddTask) {
-        this.nextStateForAddTask = nextStateForAddTask;
-    }
-
-    public State getNextStateForTodo() {
-        return nextStateForTodo;
-    }
-
-    public void setNextStateForTodo(State nextStateForTodo) {
-        this.nextStateForTodo = nextStateForTodo;
-    }
-
-    public State getNextStateForDevelopment() {
-        return nextStateForDevelopment;
-    }
-
-    public void setNextStateForDevelopment(State nextStateForDevelopment) {
-        this.nextStateForDevelopment = nextStateForDevelopment;
-    }
-
-    public State getNextStateForFeedback() {
-        return nextStateForFeedback;
-    }
-
-    public void setNextStateForFeedback(State nextStateForFeedback) {
-        this.nextStateForFeedback = nextStateForFeedback;
-    }
-
-    public State getNextStateForTesting() {
-        return nextStateForTesting;
-    }
-
-    public void setNextStateForTesting(State nextStateForTesting) {
-        this.nextStateForTesting = nextStateForTesting;
-    }
-
-    public State getPrevStateForAddTask() {
-        return prevStateForAddTask;
-    }
-
-    public void setPrevStateForAddTask(State prevStateForAddTask) {
-        this.prevStateForAddTask = prevStateForAddTask;
-    }
-
-    public State getPrevStateForTodo() {
-        return prevStateForTodo;
-    }
-
-    public void setPrevStateForTodo(State prevStateForTodo) {
-        this.prevStateForTodo = prevStateForTodo;
-    }
-
-    public State getPrevStateForDevelopment() {
-        return prevStateForDevelopment;
-    }
-
-    public void setPrevStateForDevelopment(State prevStateForDevelopment) {
-        this.prevStateForDevelopment = prevStateForDevelopment;
-    }
-
-    public State getPrevStateForFeedback() {
-        return prevStateForFeedback;
-    }
-
-    public void setPrevStateForFeedback(State prevStateForFeedback) {
-        this.prevStateForFeedback = prevStateForFeedback;
-    }
-
-    public State getPrevStateForTesting() {
-        return prevStateForTesting;
-    }
-
-    public void setPrevStateForTesting(State prevStateForTesting) {
-        this.prevStateForTesting = prevStateForTesting;
-    }
-
     public void addToWaitingAddedTasksQueue(Task addTask){
         waitingAddedTasksQueue.add(addTask);
     }

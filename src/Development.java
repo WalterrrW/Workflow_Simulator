@@ -17,35 +17,24 @@ public class Development implements State{
 	synchronized public String call() {
 		try {
 			System.out.println("Development call()");
-			nextState = taskPool.getNextStateForDevelopment();
-			prevState = taskPool.getPrevStateForDevelopment();
-//			System.out.println("nextState:" + nextState.getClass().getSimpleName());
-//			System.out.println("prevState: " + prevState);
-//			System.out.println();
 
 			while(true){
 				Task task = taskPool.getFromWaitingDevelopmentQueue();
-				if(task != null){
 					action(task);
-					taskPool.addToWaitingFeedbackQueue(task);
-				} else{
-					Thread.sleep(1000);
-					if(!taskPool.finishJob){
-						break;
-					}
-				}
 			}
 		} catch(Exception e) {
 			System.out.println("Error");
 			// TODO Auto-generated method stub
-			return null;
 		}
 		return null;
 	}
 
 	public boolean action(Task task) throws InterruptedException {
-		Thread.sleep(2000);
-		System.out.println("Development Action running..." + task.getTaskId() + '\n');
+		Thread.sleep(3000);
+		System.out.println("Development Action running..." + '\n');
+		Thread.sleep(1000);
+		System.out.println("is mai paralel ca doua linii paralele");
+
 		return true;
 	}
 

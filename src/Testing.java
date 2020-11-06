@@ -17,8 +17,6 @@ public class Testing implements State{
 	synchronized public String call() {
 		try {
 			System.out.println("Testing call()");
-			nextState = taskPool.getNextStateForTesting();
-			prevState = taskPool.getPrevStateForTesting();
 //			System.out.println("nextState: " + nextState);
 //			System.out.println("prevState: " + prevState.getClass().getSimpleName());
 //			System.out.println();
@@ -50,10 +48,10 @@ public class Testing implements State{
 		Thread.sleep(2000);
 //		System.out.println("Testing Action running..." + task.getTaskId() + '\n');
 		if(rd.nextBoolean()){
-			System.out.println("Testing Action completed..." + task.getTaskId() + '\n');
+			System.out.println("Testing Action completed..." + '\n');
 			return true;
 		}
-		System.out.println("Testing Action failed..." + task.getTaskId() + '\n');
+		System.out.println("Testing Action failed... AICI"+ '\n');
 		return false;
 	}
 }

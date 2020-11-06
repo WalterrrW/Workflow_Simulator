@@ -15,8 +15,6 @@ public class AddTask implements State{
 	synchronized public String call() {
 		try {
 			System.out.println("AddTask call()");
-			nextState = taskPool.getNextStateForAddTask();
-			prevState = taskPool.getPrevStateForAddTask();
 //			System.out.println("nextState:" + nextState.getClass().getSimpleName());
 //			System.out.println("prevState: " + prevState);
 //			System.out.println();
@@ -43,7 +41,7 @@ public class AddTask implements State{
 
 	public boolean action(Task task) throws InterruptedException {
 		Thread.sleep(2000);
-		System.out.println("AddTask Action running..." + task.getTaskId() + '\n');
+		System.out.println("AddTask Action running..."+ '\n');
 		return true;
 	}
 }

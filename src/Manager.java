@@ -9,48 +9,31 @@ import java.util.concurrent.TimeUnit;
 
 public class Manager {
 
-    public static void run(){
+
+
+    public static void run() {
 
         TaskPool taskPool = new TaskPool();
 
         State addTask = new AddTask(taskPool);
+
         State todo = new Todo(taskPool);
-        State development = new Development(taskPool);
-        State feedback = new Feedback(taskPool);
         State testing = new Testing(taskPool);
 
-        // add a new feauture (avoid hardcoding destination list into States/Threads)
-//        taskPool.setNextStateForAddTask(todo);
-//        taskPool.setNextStateForTodo(development);
-//        taskPool.setNextStateForDevelopment(feedback);
-//        taskPool.setNextStateForFeedback(testing);
-////        taskPool.setNextStateForTesting();
-//
-////        taskPool.setPrevStateForAddTask();
-////        taskPool.setPrevStateForTodo();
-////        taskPool.setPrevStateForDevelopment();
-//        taskPool.setPrevStateForFeedback(development);
-//        taskPool.setPrevStateForTesting(development);
-
-
-
-        ExecutorService executorService = Executors.newFixedThreadPool(5);
+        ExecutorService executorService = Executors.newFixedThreadPool(3);
 
 
         try {
             executorService.submit(addTask);
             executorService.submit(todo);
-            executorService.submit(development);
-            executorService.submit(feedback);
-            executorService.submit(testing);
+//            executorService.submit(testing);
 
 
-
-        taskPool.addToWaitingAddedTasksQueue(new Task(7));
+            taskPool.addToWaitingAddedTasksQueue(new Task(7));
             TimeUnit.SECONDS.sleep(2);
-            taskPool.addToWaitingAddedTasksQueue(new Task(8));
-            TimeUnit.SECONDS.sleep(2);
-            taskPool.addToWaitingAddedTasksQueue(new Task(9));
+//            taskPool.addToWaitingAddedTasksQueue(new Task(8));
+//            TimeUnit.SECONDS.sleep(2);
+//            taskPool.addToWaitingAddedTasksQueue(new Task(9));
 //        taskPool.addToWaitingAddedTasksQueue(new Task(8));
 //            TimeUnit.SECONDS.sleep(2);
 //        taskPool.addToWaitingAddedTasksQueue(new Task(9));
