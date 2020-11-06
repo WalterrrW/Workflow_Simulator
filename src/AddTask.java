@@ -27,7 +27,7 @@ public class AddTask implements State{
 					action(task);
 					taskPool.addToWaitingTodosQueue(task);
 				} else{
-					Thread.sleep(3000);
+					Thread.sleep(1000);
 					if(!taskPool.finishJob){
 						break;
 					}

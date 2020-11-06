@@ -27,7 +27,7 @@ public class Todo implements State {
                     action(task);
                     taskPool.addToWaitingDevelopmentQueue(task);
                 } else{
-                    Thread.sleep(3000);
+                    Thread.sleep(1000);
                     if(!taskPool.finishJob){
                         break;
                     }

@@ -32,7 +32,7 @@ public class Testing implements State{
 						taskPool.addToWaitingDevelopmentQueue(task);
 					}
 				} else{
-					Thread.sleep(3000);
+					Thread.sleep(1000);
 					if(!taskPool.finishJob){
 						break;
 					}

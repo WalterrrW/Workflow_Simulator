@@ -19,17 +19,18 @@ public class Manager {
         State feedback = new Feedback(taskPool);
         State testing = new Testing(taskPool);
 
-        taskPool.setNextStateForAddTask(todo);
-        taskPool.setNextStateForTodo(development);
-        taskPool.setNextStateForDevelopment(feedback);
-        taskPool.setNextStateForFeedback(testing);
-//        taskPool.setNextStateForTesting();
-
-//        taskPool.setPrevStateForAddTask();
-//        taskPool.setPrevStateForTodo();
-//        taskPool.setPrevStateForDevelopment();
-        taskPool.setPrevStateForFeedback(development);
-        taskPool.setPrevStateForTesting(development);
+        // add a new feauture (avoid hardcoding destination list into States/Threads)
+//        taskPool.setNextStateForAddTask(todo);
+//        taskPool.setNextStateForTodo(development);
+//        taskPool.setNextStateForDevelopment(feedback);
+//        taskPool.setNextStateForFeedback(testing);
+////        taskPool.setNextStateForTesting();
+//
+////        taskPool.setPrevStateForAddTask();
+////        taskPool.setPrevStateForTodo();
+////        taskPool.setPrevStateForDevelopment();
+//        taskPool.setPrevStateForFeedback(development);
+//        taskPool.setPrevStateForTesting(development);
 
 
 
@@ -47,6 +48,9 @@ public class Manager {
 
         taskPool.addToWaitingAddedTasksQueue(new Task(7));
             TimeUnit.SECONDS.sleep(2);
+            taskPool.addToWaitingAddedTasksQueue(new Task(8));
+            TimeUnit.SECONDS.sleep(2);
+            taskPool.addToWaitingAddedTasksQueue(new Task(9));
 //        taskPool.addToWaitingAddedTasksQueue(new Task(8));
 //            TimeUnit.SECONDS.sleep(2);
 //        taskPool.addToWaitingAddedTasksQueue(new Task(9));

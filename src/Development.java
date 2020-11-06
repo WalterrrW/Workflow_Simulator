@@ -29,7 +29,7 @@ public class Development implements State{
 					action(task);
 					taskPool.addToWaitingFeedbackQueue(task);
 				} else{
-					Thread.sleep(3000);
+					Thread.sleep(1000);
 					if(!taskPool.finishJob){
 						break;
 					}
