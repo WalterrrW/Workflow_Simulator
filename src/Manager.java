@@ -16,7 +16,6 @@ public class Manager {
         TaskPool taskPool = new TaskPool();
 
         State addTask = new AddTask(taskPool);
-
         State todo = new Todo(taskPool);
         State testing = new Testing(taskPool);
 

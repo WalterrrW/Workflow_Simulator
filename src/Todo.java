@@ -11,8 +11,8 @@ public class Todo implements State {
 
     public Todo(TaskPool taskPool) {
         this.taskPool = taskPool;
-        this.development = new Development(this.taskPool);
-        this.feedback = new Feedback(this.taskPool);
+        this.development = new Development(taskPool);
+        this.feedback = new Feedback(taskPool);
     }
 
     @Override
@@ -20,19 +20,18 @@ public class Todo implements State {
         try {
             this.execute = Executors.newFixedThreadPool(2);
             System.out.println("Todo call()");
-//
-//            this.execute.submit(this.development);
-//            this.execute.submit(this.feedback);
+            System.out.println("todoVar changed from 0 to 1 in todo");
+            this.taskPool.setToDoVar(1);
+            this.execute.submit(this.development);
+            this.execute.submit(this.feedback);
 
-            this.development.call();
-            this.feedback.call();
             Thread.sleep(1000);
-            this.taskPool.toDoVar = 1;
+
             while (true) {
                 Task task = taskPool.getFromWaitingTodosQueue();
                 if (task != null) {
 
-                    action(task);
+//                    action(task);
                     taskPool.addToWaitingDevelopmentQueue(task);
                     taskPool.addToWaitingFeedbackQueue(task);
                 } else {

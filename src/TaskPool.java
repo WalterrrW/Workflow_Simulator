@@ -6,7 +6,7 @@ import java.util.concurrent.SynchronousQueue;
 public class TaskPool {
 
     public boolean finishJob = true;
-    public int toDoVar = 0;
+    private static int toDoVar = 0;
     public int devVar = 0;
 
     private Queue<Task> waitingAddedTasksQueue = new LinkedList<>();
@@ -14,6 +14,14 @@ public class TaskPool {
     private Queue<Task> waitingDevelopmentQueue = new LinkedList<>();
     private Queue<Task> waitingFeedbackQueue = new LinkedList<>();
     private Queue<Task> waitingTestingQueue = new LinkedList<>();
+
+     public static synchronized int getToDoVar(){
+        return toDoVar;
+    }
+
+    public static synchronized void setToDoVar(int toDoVar2) {
+        toDoVar = toDoVar2;
+    }
 
     /*
      * Below you can see

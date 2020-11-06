@@ -3,8 +3,6 @@ import java.util.concurrent.PriorityBlockingQueue;
 
 public class AddTask implements State{
 
-	State nextState;
-	State prevState;
 	TaskPool taskPool;
 
 	public AddTask(TaskPool taskPool){
@@ -15,9 +13,6 @@ public class AddTask implements State{
 	synchronized public String call() {
 		try {
 			System.out.println("AddTask call()");
-//			System.out.println("nextState:" + nextState.getClass().getSimpleName());
-//			System.out.println("prevState: " + prevState);
-//			System.out.println();
 
 			while(true){
 				Task task = taskPool.getFromWaitingAddedTasksQueue();
