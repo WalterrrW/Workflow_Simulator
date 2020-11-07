@@ -14,9 +14,12 @@ public class Feedback implements State {
 	@Override
 	synchronized public String call() {
 		try {
-			Thread.sleep(5000);
 			System.out.println("Feedback call()");
-			System.out.println(taskPool.getToDoVar());
+			int randomTime =  rd.nextInt(7000);
+			System.out.println("Feedback will sleep " + randomTime + "ms before reading todoVar");
+			Thread.sleep(randomTime);
+
+			System.out.println("toDoVar value after sleeps " + taskPool.getToDoVar());
 
 			if(taskPool.getToDoVar() == 2){
 				System.out.println("Feedback is alive");

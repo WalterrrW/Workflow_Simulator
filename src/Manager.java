@@ -23,12 +23,13 @@ public class Manager {
 
 
         try {
+            taskPool.addToWaitingAddedTasksQueue(new Task(7));
             executorService.submit(addTask);
             executorService.submit(todo);
 //            executorService.submit(testing);
 
 
-            taskPool.addToWaitingAddedTasksQueue(new Task(7));
+
             TimeUnit.SECONDS.sleep(2);
 //            taskPool.addToWaitingAddedTasksQueue(new Task(8));
 //            TimeUnit.SECONDS.sleep(2);
