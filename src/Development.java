@@ -15,13 +15,12 @@ public class Development implements State{
 	synchronized public String call() {
 		try {
 			System.out.println("Development call()");
-			System.out.println("todoVar changed from 1 to 2 in dev");
 			this.taskPool.setToDoVar(2);
-			System.out.println(this.taskPool.getToDoVar());
-			while(true){
+			System.out.println("Development set toDoVar to 2");
+//			while(true){
 				Task task = taskPool.getFromWaitingDevelopmentQueue();
 					action(task);
-			}
+//			}
 		} catch(Exception e) {
 			System.out.println("Error");
 			// TODO Auto-generated method stub
@@ -31,7 +30,7 @@ public class Development implements State{
 
 	public boolean action(Task task) throws InterruptedException {
 		Thread.sleep(3000);
-		System.out.println("Development Action running..." + '\n');
+		System.out.println("Development Action running...");
 		Thread.sleep(1000);
 //		System.out.println("is mai paralel ca doua linii curve");
 

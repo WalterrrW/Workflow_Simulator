@@ -21,9 +21,8 @@ public class AddTask implements State{
 					taskPool.addToWaitingTodosQueue(task);
 				} else{
 					Thread.sleep(1000);
-					if(!taskPool.finishJob){
-						break;
-					}
+					System.out.println("AddTask break");
+					break;
 				}
 			}
         } catch(Exception e) {
@@ -36,7 +35,7 @@ public class AddTask implements State{
 
 	public boolean action(Task task) throws InterruptedException {
 		Thread.sleep(2000);
-		System.out.println("AddTask Action running..."+ '\n');
+		System.out.println("AddTask Action running...");
 		return true;
 	}
 }

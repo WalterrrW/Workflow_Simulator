@@ -36,8 +36,9 @@ public class Todo implements State {
                     Thread.sleep(randomTime);
                     this.taskPool.setToDoVar(1);
 
-                    this.execute.submit(this.development);
                     this.execute.submit(this.feedback);
+                    this.execute.submit(this.development);
+
 
                     taskPool.addToWaitingDevelopmentQueue(task);
                     taskPool.addToWaitingFeedbackQueue(task);
@@ -45,9 +46,6 @@ public class Todo implements State {
                     Thread.sleep(1000);
                     System.out.println("Todo break");
                     break;
-//                    if (!taskPool.finishJob) {
-////                        break;
-//                    }
                 }
             }
 
@@ -62,7 +60,7 @@ public class Todo implements State {
 
     public boolean action(Task task) throws InterruptedException {
         Thread.sleep(2000);
-        System.out.println("Todo Action running..." + '\n');
+        System.out.println("Todo Action running...");
         return true;
     }
 

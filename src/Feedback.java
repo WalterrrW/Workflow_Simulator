@@ -19,21 +19,22 @@ public class Feedback implements State {
 			System.out.println("Feedback will sleep " + randomTime + "ms before reading todoVar");
 			Thread.sleep(randomTime);
 
-			System.out.println("toDoVar value after sleeps " + taskPool.getToDoVar());
+//			System.out.println("toDoVar value after sleeps " + taskPool.getToDoVar());
 
 			if(taskPool.getToDoVar() == 2){
 				System.out.println("Feedback is alive");
+				this.taskPool.setToDoVar(3);
 			}
 			else {
 				System.out.println("feedback is dead");
 				return null;
 			}
 
-			while (true) {
+//			while (true) {
 				Task task = taskPool.getFromWaitingFeedbackQueue();
 					action(task);
 					taskPool.addToWaitingTestingQueue(task);
-			}
+//			}
 		} catch (Exception e) {
 			System.out.println(e);
 			System.out.println("Error");
@@ -44,7 +45,7 @@ public class Feedback implements State {
 
 	public boolean action(Task task) throws InterruptedException {
 		Thread.sleep(1000);
-		System.out.println("Feedback Action completed..." + '\n');
+		System.out.println("Feedback Action completed...");
 		Thread.sleep(3000);
 //		System.out.println("is mai paralel ca doua linii paralele");
 		return true;

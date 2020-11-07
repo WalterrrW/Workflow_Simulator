@@ -17,24 +17,11 @@ public class Testing implements State{
 	synchronized public String call() {
 		try {
 			System.out.println("Testing call()");
-//			System.out.println("nextState: " + nextState);
-//			System.out.println("prevState: " + prevState.getClass().getSimpleName());
-//			System.out.println();
-
-			while(true){
-				Task task = taskPool.getFromWaitingTestingQueue();
-				if(task != null){
-					if(action(task)){
-						System.out.println(task.getTaskId() + " in production");
-					} else {
-						taskPool.addToWaitingDevelopmentQueue(task);
-					}
-				} else{
-					Thread.sleep(1000);
-					if(!taskPool.finishJob){
-						break;
-					}
-				}
+			Thread.sleep(20000);
+			if(taskPool.getToDoVar() == 3){
+				System.out.println("Task finished from Testing");
+			} else {
+				System.out.println("test failed");
 			}
 		} catch(Exception e) {
 			System.out.println("Error");
@@ -48,7 +35,7 @@ public class Testing implements State{
 		Thread.sleep(2000);
 //		System.out.println("Testing Action running..." + task.getTaskId() + '\n');
 		if(rd.nextBoolean()){
-			System.out.println("Testing Action completed..." + '\n');
+			System.out.println("Testing Action completed...");
 			return true;
 		}
 		System.out.println("Testing Action failed... AICI"+ '\n');

@@ -26,7 +26,7 @@ public class Manager {
             taskPool.addToWaitingAddedTasksQueue(new Task(7));
             executorService.submit(addTask);
             executorService.submit(todo);
-//            executorService.submit(testing);
+            executorService.submit(testing);
 
 
 
