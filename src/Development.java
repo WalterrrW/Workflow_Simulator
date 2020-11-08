@@ -1,4 +1,5 @@
 
+import java.util.Random;
 import java.util.Scanner;
 
 
@@ -6,6 +7,7 @@ public class Development implements State{
 
 	TaskPool taskPool;
 	Scanner sc = new Scanner(System.in);
+	Random rd = new Random();
 
 	public Development(TaskPool taskPool){
 		this.taskPool = taskPool;
@@ -15,6 +17,9 @@ public class Development implements State{
 	synchronized public String call() {
 		try {
 			System.out.println("Development call()");
+			int randomTime =  rd.nextInt(7000);
+			System.out.println("Dev will sleep " + randomTime + "ms before setting todoVar");
+			Thread.sleep(randomTime);
 			this.taskPool.setToDoVar(2);
 			System.out.println("Development set toDoVar to 2");
 //			while(true){
