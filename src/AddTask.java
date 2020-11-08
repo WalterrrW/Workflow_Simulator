@@ -10,11 +10,10 @@ public class AddTask implements State{
 	}
 
 	@Override
-	synchronized public String call() {
+	synchronized public Integer call() {
 		try {
 			System.out.println("AddTask call()");
 
-			while(true){
 				Task task = taskPool.getFromWaitingAddedTasksQueue();
 				if(task != null){
 					action(task);
@@ -22,15 +21,13 @@ public class AddTask implements State{
 				} else{
 					Thread.sleep(1000);
 					System.out.println("AddTask break");
-					break;
 				}
-			}
         } catch(Exception e) {
             System.out.println("Error");
 		// TODO Auto-generated method stub
-		return null;
+		return 1;
 	}
-		return null;
+		return 0;
 	}
 
 	public boolean action(Task task) throws InterruptedException {

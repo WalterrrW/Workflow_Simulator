@@ -26,7 +26,14 @@ public class Manager {
             taskPool.addToWaitingAddedTasksQueue(new Task(7));
             executorService.submit(addTask);
             executorService.submit(todo);
-            executorService.submit(testing);
+
+//            TimeUnit.SECONDS.sleep(20);
+//            if(taskPool.getToDoVar() == 3){
+//                executorService.submit(testing);
+//            } else {
+//                System.out.println("Cannot test because it failed already");
+//            }
+
 
 
 

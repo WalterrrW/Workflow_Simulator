@@ -14,30 +14,35 @@ public class Development implements State{
 	}
 
 	@Override
-	synchronized public String call() {
+	synchronized public Integer call() {
 		try {
 			System.out.println("Development call()");
 			int randomTime =  rd.nextInt(7000);
 			System.out.println("Dev will sleep " + randomTime + "ms before setting todoVar");
 			Thread.sleep(randomTime);
-			this.taskPool.setToDoVar(2);
-			System.out.println("Development set toDoVar to 2");
-//			while(true){
+			if(taskPool.getToDoVar() == 1) {
+				System.out.println("Dev is alive");
+				int randomTime2 =  rd.nextInt(2000);
+				System.out.println("Dev will sleep " + randomTime2 + "ms before setting todoVar");
+				Thread.sleep(randomTime2);
+				this.taskPool.setToDoVar(2);
+			} else {
+				System.out.println("Development failed because toDoVar is not ser from Todo");
+				return 1;
+			}
+
 				Task task = taskPool.getFromWaitingDevelopmentQueue();
 					action(task);
-//			}
 		} catch(Exception e) {
 			System.out.println("Error");
 			// TODO Auto-generated method stub
 		}
-		return null;
+		return 0;
 	}
 
 	public boolean action(Task task) throws InterruptedException {
-		Thread.sleep(3000);
+//		Thread.sleep(3000);
 		System.out.println("Development Action running...");
-		Thread.sleep(1000);
-//		System.out.println("is mai paralel ca doua linii curve");
 
 		return true;
 	}
