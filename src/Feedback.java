@@ -33,29 +33,27 @@ public class Feedback implements State {
 				System.out.println("Feedback is alive");
 				this.taskPool.setToDoVar(3);
 
-				Future<Integer> returnValue = executorService.submit(testing);
+				Task task = taskPool.getFromWaitingFeedbackQueue();
+				action(task);
+				taskPool.addToWaitingTestingQueue(task);
 
+				Future<Integer> returnValue = executorService.submit(testing);
 			}
 			else {
 				System.out.println("feedback is dead");
 				return 1;
 			}
 
-				Task task = taskPool.getFromWaitingFeedbackQueue();
-					action(task);
-					taskPool.addToWaitingTestingQueue(task);
-
 		} catch (Exception e) {
 			System.out.println(e);
-			System.out.println("Error");
+			System.out.println("Error from Feedback");
 			// TODO Auto-generated method stub
 		}
-		return null;
+		return 0;
 	}
 
 	public boolean action(Task task) throws InterruptedException {
-//		Thread.sleep(1000);
-		System.out.println("Feedback Action completed...");
+		System.out.println("Feedback Action running on task " + task.getTaskId());
 		return true;
 	}
 }

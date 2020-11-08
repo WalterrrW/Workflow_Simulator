@@ -14,14 +14,18 @@ public class Testing implements State{
 	@Override
 	synchronized public Integer call() {
 		try {
+			Task task = taskPool.getFromWaitingTestingQueue();
 			System.out.println("Testing call()");
 			if(taskPool.getToDoVar() == 3){
+				if(task!=null){
+					action(task);
+				}
 				System.out.println("Task finished from Testing");
 			} else {
 				System.out.println("test failed");
 			}
 		} catch(Exception e) {
-			System.out.println("Error");
+			System.out.println("Error from Testing");
 			// TODO Auto-generated method stub
 			return 1;
 		}
@@ -29,12 +33,8 @@ public class Testing implements State{
 	}
 
 	public boolean action(Task task) throws InterruptedException {
-		Thread.sleep(2000);
-		if(rd.nextBoolean()){
-			System.out.println("Testing Action completed...");
+			System.out.println("Testing Action running on task " + task.getTaskId());
 			return true;
 		}
-		System.out.println("Testing Action failed... AICI"+ '\n');
-		return false;
-	}
+
 }

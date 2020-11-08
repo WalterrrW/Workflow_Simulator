@@ -14,10 +14,9 @@ public class Manager {
     public static void run() {
 
         TaskPool taskPool = new TaskPool();
-
         State addTask = new AddTask(taskPool);
-        State todo = new Todo(taskPool);
         State testing = new Testing(taskPool);
+
 
         ExecutorService executorService = Executors.newFixedThreadPool(3);
 
@@ -25,38 +24,10 @@ public class Manager {
         try {
             taskPool.addToWaitingAddedTasksQueue(new Task(7));
             executorService.submit(addTask);
-            executorService.submit(todo);
-
-//            TimeUnit.SECONDS.sleep(20);
-//            if(taskPool.getToDoVar() == 3){
-//                executorService.submit(testing);
-//            } else {
-//                System.out.println("Cannot test because it failed already");
-//            }
-
-
-
-
-            TimeUnit.SECONDS.sleep(2);
-//            taskPool.addToWaitingAddedTasksQueue(new Task(8));
-//            TimeUnit.SECONDS.sleep(2);
-//            taskPool.addToWaitingAddedTasksQueue(new Task(9));
-//        taskPool.addToWaitingAddedTasksQueue(new Task(8));
-//            TimeUnit.SECONDS.sleep(2);
-//        taskPool.addToWaitingAddedTasksQueue(new Task(9));
-//            TimeUnit.SECONDS.sleep(2);
-//        taskPool.addToWaitingAddedTasksQueue(new Task(10));
-
-            TimeUnit.SECONDS.sleep(55);
-
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            TimeUnit.SECONDS.sleep(10000);
+//            executorService.submit(testing);
+        }catch (Exception e){
+            System.out.println(e.toString());
         }
-
-
-        taskPool.finishJob = false;
-
-        executorService.shutdown();
-
     }
 }

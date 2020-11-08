@@ -23,6 +23,14 @@ public class TaskPool {
         toDoVar = toDoVar2;
     }
 
+    public static synchronized int getDevVar(){
+        return toDoVar;
+    }
+
+    public static synchronized void setDevVar(int toDoVar2) {
+        toDoVar = toDoVar2;
+    }
+
     /*
      * Below you can see
      * getters and setters
