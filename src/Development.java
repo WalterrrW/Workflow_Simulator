@@ -21,9 +21,11 @@ public class Development implements State{
 			System.out.println("Dev will sleep " + randomTime + "ms before setting todoVar");
 			Thread.sleep(randomTime);
 			this.taskPool.setToDoVar(2);
+			Runtime.getRuntime().exec("cmd /c setx varManagerDev 2");
 
 
-				Task task = taskPool.getFromWaitingDevelopmentQueue();
+
+			Task task = taskPool.getFromWaitingDevelopmentQueue();
 					action(task);
 
 //

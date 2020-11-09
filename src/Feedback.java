@@ -32,6 +32,8 @@ public class Feedback implements State {
 			if(taskPool.getToDoVar() == 2){
 				System.out.println("Feedback is alive");
 				this.taskPool.setToDoVar(3);
+				Runtime.getRuntime().exec("cmd /c setx varManagerFeedback 1");
+
 
 				Task task = taskPool.getFromWaitingFeedbackQueue();
 				action(task);

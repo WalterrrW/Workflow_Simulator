@@ -32,6 +32,7 @@ public class Todo implements State {
 
                 System.out.println("Todo set toDoVar to 1");
                 this.taskPool.setToDoVar(1);
+                Runtime.getRuntime().exec("cmd /c setx varManagerTodo 1");
 
                 if (task != null) {
                     action(task);

@@ -13,6 +13,8 @@ public class Manager {
 
     public static void run() {
 
+
+
         TaskPool taskPool = new TaskPool();
         State addTask = new AddTask(taskPool);
         State testing = new Testing(taskPool);
