@@ -22,15 +22,11 @@ public class Todo implements State {
     @Override
     synchronized public Integer call() {
         try {
-
-            System.out.println("Todo Call()");
+                System.out.println("Todo has been called from AddTask, now running...");
 
                 Task task = taskPool.getFromWaitingTodosQueue();
-                this.execute = Executors.newFixedThreadPool(2);
-                Future<Integer> returnFeedbackValue = this.execute.submit(this.feedback);
-                 this.execute.submit(this.development);
 
-                System.out.println("Todo set toDoVar to 1");
+                System.out.println("Todo is setting toDoVar to value 1");
                 this.taskPool.setToDoVar(1);
 
                 if (task != null) {
@@ -38,16 +34,22 @@ public class Todo implements State {
                     taskPool.addToWaitingDevelopmentQueue(task);
                     taskPool.addToWaitingFeedbackQueue(task);
                 } else {
-                    System.out.println("Todo break");
+                    System.out.println("Todo found no task in the input queue");
                 }
+
+                this.execute = Executors.newFixedThreadPool(2);
+                Future<Integer> returnFeedbackValue = this.execute.submit(this.feedback);
+                this.execute.submit(this.development);
 
                 while(true){
                     if(returnFeedbackValue.get() == 1){
                         execute.shutdownNow();
-                        System.out.println("Feedback fisrt kill Dev");
+                        System.out.println("We are back in Todo thread, Feedback and Development were shutted down");
+                        System.out.println("-----------------------------------------------------");
                         break;
                     } else if(returnFeedbackValue.get() == 0){
-                        System.out.println("feedback comes after dev, expected behaviour");
+                        System.out.println("We are back in Todo thread, feedback came after Development. EXPECTED BEHAVIOR!");
+                        System.out.println("-----------------------------------------------------");
                         break;
                     }
                 }
@@ -61,7 +63,8 @@ public class Todo implements State {
     }
 
     public boolean action(Task task)  {
-        System.out.println("Todo Action running on task " + task.getTaskId());
+        System.out.println("Todo action running on task " + task.getTaskId());
+        System.out.println("-----------------------------------------------------");
         return true;
     }
 

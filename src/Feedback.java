@@ -23,24 +23,31 @@ public class Feedback implements State {
 	@Override
 	synchronized public Integer call() {
 		try {
-			System.out.println("Feedback call()");
+			System.out.println("Feedback has been called from Todo, now running...");
 			int randomTime =  rd.nextInt(7000);
-			System.out.println("Feedback will sleep " + randomTime + "ms before reading todoVar");
+			System.out.println("Feedback sleeps for " + randomTime + " ms before reading todoVar");
 			Thread.sleep(randomTime);
 
 
 			if(taskPool.getToDoVar() == 2){
-				System.out.println("Feedback is alive");
+				System.out.println("Development did set toDoVar before, now Feedback is setting toDoVar to value 3");
 				this.taskPool.setToDoVar(3);
 
 				Task task = taskPool.getFromWaitingFeedbackQueue();
-				action(task);
-				taskPool.addToWaitingTestingQueue(task);
+				if (task != null){
+					action(task);
+					taskPool.addToWaitingTestingQueue(task);
+				}
+				else {
+					System.out.println("Feedback found no task in the input queue");
+				}
+
 
 				Future<Integer> returnValue = executorService.submit(testing);
 			}
 			else {
-				System.out.println("feedback is dead");
+				System.out.println("Development did NOT set toDoVar before, the flow will stop now");
+				System.out.println("-----------------------------------------------------");
 				return 1;
 			}
 
@@ -54,6 +61,7 @@ public class Feedback implements State {
 
 	public boolean action(Task task) throws InterruptedException {
 		System.out.println("Feedback Action running on task " + task.getTaskId());
+		System.out.println("-----------------------------------------------------");
 		return true;
 	}
 }

@@ -18,7 +18,7 @@ public class AddTask implements State{
 	@Override
 	synchronized public Integer call() {
 		try {
-			System.out.println("AddTask call()");
+				System.out.println("AddTask has been called from manager, now running...");
 
 				Task task = taskPool.getFromWaitingAddedTasksQueue();
 				if(task != null){
@@ -27,7 +27,7 @@ public class AddTask implements State{
 					executorService.submit(todo);
 				} else{
 					Thread.sleep(1000);
-					System.out.println("AddTask break");
+					System.out.println("AddTask found no task in the input queue");
 				}
         } catch(Exception e) {
             System.out.println("Error from AddTask");
@@ -38,7 +38,8 @@ public class AddTask implements State{
 	}
 
 	public boolean action(Task task){
-		System.out.println("AddTask Action running on task " + task.getTaskId());
+		System.out.println("AddTask action running on task " + task.getTaskId());
+		System.out.println("-----------------------------------------------------");
 		return true;
 	}
 }

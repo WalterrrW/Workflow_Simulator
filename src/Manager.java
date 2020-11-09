@@ -8,18 +8,12 @@ import java.util.concurrent.TimeUnit;
 
 
 public class Manager {
-
-
-
     public static void run() {
-
         TaskPool taskPool = new TaskPool();
         State addTask = new AddTask(taskPool);
         State testing = new Testing(taskPool);
 
-
         ExecutorService executorService = Executors.newFixedThreadPool(3);
-
 
         try {
             taskPool.addToWaitingAddedTasksQueue(new Task(7));

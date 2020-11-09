@@ -15,7 +15,7 @@ public class TaskPool {
     private Queue<Task> waitingFeedbackQueue = new LinkedList<>();
     private Queue<Task> waitingTestingQueue = new LinkedList<>();
 
-     public static synchronized int getToDoVar(){
+    public static synchronized int getToDoVar(){
         return toDoVar;
     }
 
