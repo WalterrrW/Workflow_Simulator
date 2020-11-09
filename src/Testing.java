@@ -15,14 +15,16 @@ public class Testing implements State{
 	synchronized public Integer call() {
 		try {
 			Task task = taskPool.getFromWaitingTestingQueue();
-			System.out.println("Testing call()");
+			System.out.println("Testing has been called from Feedback, now running...");
 			if(taskPool.getToDoVar() == 3){
 				if(task!=null){
 					action(task);
 				}
 				System.out.println("Task finished from Testing");
+				System.out.println("-----------------------------------------------------");
 			} else {
 				System.out.println("test failed");
+				System.out.println("-----------------------------------------------------");
 			}
 		} catch(Exception e) {
 			System.out.println("Error from Testing");

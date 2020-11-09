@@ -16,17 +16,24 @@ public class Development implements State{
 	@Override
 	synchronized public Integer call() {
 		try {
-			System.out.println("Development call()");
+			System.out.println("Development has been called from Todo, now running...");
 			int randomTime =  rd.nextInt(7000);
-			System.out.println("Dev will sleep " + randomTime + "ms before setting todoVar");
+			System.out.println("Development sleeps for " + randomTime + " ms before setting todoVar");
 			Thread.sleep(randomTime);
 			this.taskPool.setToDoVar(2);
 			Runtime.getRuntime().exec("cmd /c setx varManagerDev 2");
 
 
 
+
 			Task task = taskPool.getFromWaitingDevelopmentQueue();
 					action(task);
+
+
+			Task task = taskPool.getFromWaitingDevelopmentQueue();
+			if (task != null){
+				action(task);
+			}
 
 //
 //					this.taskPool.(1);
@@ -39,7 +46,6 @@ public class Development implements State{
 
 	public boolean action(Task task){
 		System.out.println("Development Action running on task " + task.getTaskId());
-
 		return true;
 	}
 
