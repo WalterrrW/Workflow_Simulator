@@ -32,7 +32,7 @@ public class Feedback implements State {
 			if(taskPool.getToDoVar() == 2){
 				System.out.println("Development did set toDoVar before, now Feedback is setting toDoVar to value 3");
 				this.taskPool.setToDoVar(3);
-				Runtime.getRuntime().exec("cmd /c setx varManagerFeedback 1");
+//				Runtime.getRuntime().exec("cmd /c setx varManagerFeedback 1");
 
 
 				Task task = taskPool.getFromWaitingFeedbackQueue();

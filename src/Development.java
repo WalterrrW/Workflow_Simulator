@@ -21,22 +21,12 @@ public class Development implements State{
 			System.out.println("Development sleeps for " + randomTime + " ms before setting todoVar");
 			Thread.sleep(randomTime);
 			this.taskPool.setToDoVar(2);
-			Runtime.getRuntime().exec("cmd /c setx varManagerDev 2");
-
-
-
-
-			Task task = taskPool.getFromWaitingDevelopmentQueue();
-					action(task);
-
+			//Runtime.getRuntime().exec("cmd /c setx varManagerDev 2");
 
 			Task task = taskPool.getFromWaitingDevelopmentQueue();
 			if (task != null){
 				action(task);
 			}
-
-//
-//					this.taskPool.(1);
 		} catch(Exception e) {
 			System.out.println("Error from Development");
 			// TODO Auto-generated method stub

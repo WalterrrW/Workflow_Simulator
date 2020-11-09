@@ -20,7 +20,6 @@ public class Manager {
             taskPool.addToWaitingAddedTasksQueue(new Task(7));
             executorService.submit(addTask);
             TimeUnit.SECONDS.sleep(10000);
-//            executorService.submit(testing);
         }catch (Exception e){
             System.out.println(e.toString());
         }
